@@ -432,6 +432,51 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
+/* Entrenamiento (subpestañas) */
+.ttabs{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 22px}
+.ttabs button{font:inherit;font-size:15px;font-weight:700;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.ttabs button:hover{border-color:var(--ink)}
+.ttabs button[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.tpane .sh{border-bottom-width:1px;padding-bottom:10px;margin-bottom:18px}
+.tpane .sh h2{display:none}
+.tpane .sh p{margin-top:0}
+/* Live */
+.livebadge{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--red);margin-right:12px;vertical-align:.12em;box-shadow:0 0 0 5px var(--red-soft);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(210,47,60,.08)}}
+.livegrid{display:grid;grid-template-columns:330px minmax(0,1fr);gap:20px;align-items:start}
+.livelist{display:grid;gap:8px;max-height:640px;overflow:auto;padding-right:2px}
+.lt{display:grid;gap:4px;text-align:left;font:inherit;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;color:var(--ink)}
+.lt:hover{border-color:var(--ink)}
+.lt[aria-pressed="true"]{border-color:var(--navy);box-shadow:inset 4px 0 0 var(--red)}
+.lt b{font-size:14.5px;line-height:1.25}
+.lt small{font-size:12.5px;color:var(--muted)}
+.st{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;justify-self:start;padding:2px 7px;border-radius:4px;background:var(--surface-2);color:var(--muted)}
+.st.on{background:var(--red);color:#fff}.st.soon{background:var(--blue-soft);color:var(--blue)}
+.liveview{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:0}
+.livehead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.livehead h3{margin:2px 0 0;font-family:var(--display);font-stretch:78%;font-weight:800;font-size:22px;line-height:1.05;text-transform:uppercase}
+.liveframe{position:relative;width:100%;height:clamp(460px,52vw,640px);border-radius:8px;overflow:hidden;background:var(--surface-2)}
+.liveframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:16px 50px 16px 18px;font-weight:700;font-size:16px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:20px;color:var(--red)}
+.faq details[open] summary::after{content:"−"}
+.faq details[open] summary{border-bottom:1px solid var(--line)}
+.faq details>div{padding:4px 18px 14px;font-size:15px;color:var(--ink)}
+.faq p{margin:10px 0}
+.faq ul{margin:8px 0;padding-left:20px}.faq li{margin:4px 0}
+.faq a{color:var(--blue)}
+@media (max-width:900px){.livegrid{grid-template-columns:1fr}.livelist{max-height:none;grid-auto-flow:column;grid-auto-columns:minmax(240px,78%);overflow-x:auto;padding-bottom:6px}}
+@media (max-width:600px){.ttabs{flex-wrap:nowrap;overflow-x:auto;margin-bottom:16px}.ttabs button{white-space:nowrap;padding:9px 14px;font-size:14px}.liveframe{height:560px}.faq summary{font-size:15px;padding:14px 44px 14px 14px}.faq details>div{padding:2px 14px 12px}}
+
+.livedot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
+.ttabs button[aria-selected="true"] .livedot{box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.tabs a.navlive::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff4d5a;margin-right:6px;vertical-align:.1em;animation:pulse 1.6s ease-in-out infinite}
+.tpane#live .sh h2 .livebadge{display:none}
+
 /* Celular: diseño compacto */
 @media (max-width:600px){
   header.nav .wrap{gap:6px;padding-block:8px 4px}
@@ -500,7 +545,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
 </div></div>
 <header class="nav"><div class="wrap">
   <a class="logo" href="#inicio" aria-label="ajedrezchileno.cl, inicio"><div class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>ajedrezchileno<em>.cl</em></span></a>
-  <nav class="tabs" aria-label="Secciones"><a href="#torneos">Torneos</a><a href="#noticias">Noticias</a><a href="#ranking">Ranking</a><a href="#base">Base de datos</a><a href="#jugar">Juega online</a><a href="#tactica">Táctica</a><a href="#campeones">Campeones</a><a href="#libros">Libros</a></nav>
+  <nav class="tabs" aria-label="Secciones"><a href="#torneos">Torneos</a><a href="#live" class="navlive">Live</a><a href="#noticias">Noticias</a><a href="#ranking">Ranking</a><a href="#entrenamiento">Entrenamiento</a><a href="#historia">Historia</a><a href="#faq">FAQ</a></nav>
 </div><div class="flagbar" aria-hidden="true"></div></header>
 
 <main id="inicio">
@@ -520,6 +565,9 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
 
 <div class="wrap">
   <section id="torneos">
+    <div class="sh"><div><h2>Torneos</h2><p>El calendario de todo Chile y las transmisiones en vivo de los torneos chilenos en Lichess.</p></div></div>
+    <div class="ttabs" id="tt-torneos" role="tablist" aria-label="Torneos"><button type="button" role="tab" data-k="calendario" aria-selected="true">Calendario</button><button type="button" role="tab" data-k="live" aria-selected="false"><span class="livedot" aria-hidden="true"></span>Live</button></div>
+  <div class="tpane" id="calendario" role="tabpanel">
     <div class="sh"><div><h2>Calendario de torneos</h2><p>Torneos publicados por los clubes federados. Toca un torneo para ver la ficha completa e inscribirte en la Federación.</p></div>
       <span class="src">Fuente: <a href="https://www.federacionchilenadeajedrez.cl/torneos/" target="_blank" rel="noopener">Federación de Ajedrez de Chile</a></span></div>
     <div class="tgrid">
@@ -543,6 +591,18 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
         <button class="more" id="more" type="button"></button>
       </div>
     </div>
+  </div>
+  <div class="tpane" id="live" role="tabpanel">
+    <div class="sh"><div><h2><span class="livebadge" aria-hidden="true"></span>Live</h2><p>Transmisiones de torneos chilenos en Lichess, jugada a jugada. Elige un torneo para verlo aquí mismo.</p></div>
+      <span class="src">Transmisiones: <a href="https://lichess.org/broadcast?q=chile" target="_blank" rel="noopener">Lichess</a></span></div>
+    <div class="livegrid">
+      <div class="livelist" id="livelist" aria-live="polite"><p class="exnote">Buscando transmisiones…</p></div>
+      <div class="liveview">
+        <div class="livehead"><div style="min-width:0"><span class="label" id="livestate"></span><h3 id="livetitle">Transmisión</h3></div><a class="btn" id="livelink" href="https://lichess.org/broadcast?q=chile" target="_blank" rel="noopener">Abrir en Lichess</a></div>
+        <div class="liveframe"><iframe id="liveframe" title="Transmisión en vivo de Lichess" allowtransparency="true" allow="fullscreen" loading="lazy"></iframe></div>
+      </div>
+    </div>
+  </div>
   </section>
 
 
@@ -568,7 +628,50 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
       <tbody id="ptable"></tbody>
     </table></div>
   </section>
-  <section id="base">
+  <section id="entrenamiento">
+    <div class="sh"><div><h2>Entrenamiento</h2><p>Ejercicios tácticos, partidas online y la base de datos para preparar a tus rivales chilenos.</p></div></div>
+    <div class="ttabs" id="tt-entrenamiento" role="tablist" aria-label="Entrenamiento"><button type="button" role="tab" data-k="tactica" aria-selected="true">Táctica</button><button type="button" role="tab" data-k="jugar" aria-selected="false">Juega online</button><button type="button" role="tab" data-k="base" aria-selected="false">Base de datos</button></div>
+  <div class="tpane" id="tactica" role="tabpanel">
+    <div class="sh"><div><h2>Táctica</h2><p>Entrena el cálculo con los ejercicios de Lichess: contra el reloj, en racha o por tema.</p></div>
+      <span class="src">Ejercicios: <a href="https://lichess.org/training" target="_blank" rel="noopener">Lichess</a> (CC0)</span></div>
+    <div class="pgrid">
+      <div style="min-width:0">
+        <div class="tmodes">
+          <a class="play" href="https://lichess.org/storm" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">⚡&#xFE0E;</span><h3>Puzzle Storm</h3><p>Tres minutos contra el reloj. Los ejercicios se van poniendo más difíciles.</p></a>
+          <a class="play" href="https://lichess.org/streak" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♝&#xFE0E;</span><h3>Puzzle Streak</h3><p>Sin reloj, pero un solo error termina la racha.</p></a>
+          <a class="play" href="https://lichess.org/training/themes" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♟&#xFE0E;</span><h3>Por tema</h3><p>Mates en dos, clavadas, horquillas, finales y más.</p></a>
+        </div>
+      </div>
+      <div class="frame"><span class="label">Ejercicio del día</span>
+        <iframe src="https://lichess.org/training/frame?theme=blue&amp;bg=light" title="Ejercicio del día de Lichess" loading="lazy" allowtransparency="true"></iframe>
+        <small>Un ejercicio nuevo cada día. Haz clic en el tablero para resolverlo en Lichess.</small></div>
+    </div>
+  </div>
+  <div class="tpane" id="jugar" role="tabpanel">
+    <div class="sh"><div><h2>Juega online</h2><p>Partidas gratis y sin publicidad en Lichess. Elige cómo quieres jugar y se abre Lichess en una pestaña nueva, con el tablero listo.</p></div>
+      <span class="src">Plataforma: <a href="https://lichess.org" target="_blank" rel="noopener">lichess.org</a></span></div>
+    <div class="pgrid">
+      <div style="min-width:0">
+        <div class="plays">
+          <a class="play main" href="https://lichess.org/#hook" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♞&#xFE0E;</span><h3>Partida rápida</h3><p>Busca un rival de tu nivel en segundos. Tú eliges el ritmo: blitz, rápido o clásico.</p><span class="go">Buscar rival →</span></a>
+          <a class="play" href="https://lichess.org/#friend" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♚&#xFE0E;</span><h3>Desafía a un amigo</h3><p>Crea una partida y comparte el enlace con quien quieras jugar.</p><span class="go">Crear desafío →</span></a>
+          <a class="play" href="https://lichess.org/#ai" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♜&#xFE0E;</span><h3>Contra la computadora</h3><p>Ocho niveles, desde principiante hasta Stockfish a toda fuerza.</p><span class="go">Jugar →</span></a>
+          <a class="play" href="https://lichess.org/tournament" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♛&#xFE0E;</span><h3>Torneos arena</h3><p>Torneos online que comienzan cada pocos minutos, a todos los ritmos.</p><span class="go">Ver torneos →</span></a>
+        </div>
+        <div class="comm"><span class="label">Comunidad chilena en Lichess</span>
+          <div class="clinks">
+            <a class="xl" href="https://lichess.org/team/ajefech-chile" target="_blank" rel="noopener">AJEFECH Chile<small>Equipo de la Federación</small></a>
+            <a class="xl" href="https://lichess.org/team/chess-chile" target="_blank" rel="noopener">Chess Chile<small>Equipo abierto</small></a>
+            <a class="xl" href="https://lichess.org/broadcast?q=chile" target="_blank" rel="noopener">Torneos chilenos en vivo<small>Transmisiones de Lichess</small></a>
+            <a class="xl" href="https://lichess.org/team/search?text=chile" target="_blank" rel="noopener">Más equipos de Chile<small>Clubes y colegios</small></a>
+          </div></div>
+      </div>
+      <div class="frame"><span class="label"><span class="dotlive" aria-hidden="true"></span>En vivo en Lichess TV</span>
+        <iframe src="https://lichess.org/tv/frame?theme=blue&amp;bg=light" title="Lichess TV: la partida destacada en vivo" loading="lazy" allowtransparency="true"></iframe>
+        <small>La partida de mayor nivel que se juega ahora mismo en Lichess.</small></div>
+    </div>
+  </div>
+  <div class="tpane" id="base" role="tabpanel">
     <div class="sh"><div><h2>Base de datos</h2><p>Prepara tus partidas contra rivales chilenos: su ficha FIDE, accesos directos a las grandes bases de partidas y nuestro archivo propio con su repertorio con blancas y con negras.</p></div>
       <span class="src">Partidas: <a href="https://lichess.org/broadcast" target="_blank" rel="noopener">transmisiones de Lichess</a> (CC0)</span></div>
     <div class="dbsearch">
@@ -603,48 +706,12 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
       <thead><tr><th>Fecha</th><th>Torneo</th><th>Color</th><th>Rival</th><th class="e">ELO</th><th>Resultado</th><th>ECO</th><th class="e">Jug.</th></tr></thead>
       <tbody id="dbgames"></tbody></table></div>
     <p class="dbcredit">Archivo propio con <span id="dbtot"></span> partidas de torneos chilenos transmitidos en Lichess entre 2021 y 2026 (dominio público, CC0). Para partidas más antiguas o del extranjero usa los enlaces a ChessBase, Chessgames y las demás bases.</p>
+  </div>
   </section>
-  <section id="jugar">
-    <div class="sh"><div><h2>Juega online</h2><p>Partidas gratis y sin publicidad en Lichess. Elige cómo quieres jugar y se abre Lichess en una pestaña nueva, con el tablero listo.</p></div>
-      <span class="src">Plataforma: <a href="https://lichess.org" target="_blank" rel="noopener">lichess.org</a></span></div>
-    <div class="pgrid">
-      <div style="min-width:0">
-        <div class="plays">
-          <a class="play main" href="https://lichess.org/#hook" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♞&#xFE0E;</span><h3>Partida rápida</h3><p>Busca un rival de tu nivel en segundos. Tú eliges el ritmo: blitz, rápido o clásico.</p><span class="go">Buscar rival →</span></a>
-          <a class="play" href="https://lichess.org/#friend" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♚&#xFE0E;</span><h3>Desafía a un amigo</h3><p>Crea una partida y comparte el enlace con quien quieras jugar.</p><span class="go">Crear desafío →</span></a>
-          <a class="play" href="https://lichess.org/#ai" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♜&#xFE0E;</span><h3>Contra la computadora</h3><p>Ocho niveles, desde principiante hasta Stockfish a toda fuerza.</p><span class="go">Jugar →</span></a>
-          <a class="play" href="https://lichess.org/tournament" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♛&#xFE0E;</span><h3>Torneos arena</h3><p>Torneos online que comienzan cada pocos minutos, a todos los ritmos.</p><span class="go">Ver torneos →</span></a>
-        </div>
-        <div class="comm"><span class="label">Comunidad chilena en Lichess</span>
-          <div class="clinks">
-            <a class="xl" href="https://lichess.org/team/ajefech-chile" target="_blank" rel="noopener">AJEFECH Chile<small>Equipo de la Federación</small></a>
-            <a class="xl" href="https://lichess.org/team/chess-chile" target="_blank" rel="noopener">Chess Chile<small>Equipo abierto</small></a>
-            <a class="xl" href="https://lichess.org/broadcast?q=chile" target="_blank" rel="noopener">Torneos chilenos en vivo<small>Transmisiones de Lichess</small></a>
-            <a class="xl" href="https://lichess.org/team/search?text=chile" target="_blank" rel="noopener">Más equipos de Chile<small>Clubes y colegios</small></a>
-          </div></div>
-      </div>
-      <div class="frame"><span class="label"><span class="dotlive" aria-hidden="true"></span>En vivo en Lichess TV</span>
-        <iframe src="https://lichess.org/tv/frame?theme=blue&amp;bg=light" title="Lichess TV: la partida destacada en vivo" loading="lazy" allowtransparency="true"></iframe>
-        <small>La partida de mayor nivel que se juega ahora mismo en Lichess.</small></div>
-    </div>
-  </section>
-  <section id="tactica">
-    <div class="sh"><div><h2>Táctica</h2><p>Entrena el cálculo con los ejercicios de Lichess: contra el reloj, en racha o por tema.</p></div>
-      <span class="src">Ejercicios: <a href="https://lichess.org/training" target="_blank" rel="noopener">Lichess</a> (CC0)</span></div>
-    <div class="pgrid">
-      <div style="min-width:0">
-        <div class="tmodes">
-          <a class="play" href="https://lichess.org/storm" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">⚡&#xFE0E;</span><h3>Puzzle Storm</h3><p>Tres minutos contra el reloj. Los ejercicios se van poniendo más difíciles.</p></a>
-          <a class="play" href="https://lichess.org/streak" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♝&#xFE0E;</span><h3>Puzzle Streak</h3><p>Sin reloj, pero un solo error termina la racha.</p></a>
-          <a class="play" href="https://lichess.org/training/themes" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♟&#xFE0E;</span><h3>Por tema</h3><p>Mates en dos, clavadas, horquillas, finales y más.</p></a>
-        </div>
-      </div>
-      <div class="frame"><span class="label">Ejercicio del día</span>
-        <iframe src="https://lichess.org/training/frame?theme=blue&amp;bg=light" title="Ejercicio del día de Lichess" loading="lazy" allowtransparency="true"></iframe>
-        <small>Un ejercicio nuevo cada día. Haz clic en el tablero para resolverlo en Lichess.</small></div>
-    </div>
-  </section>
-  <section id="campeones">
+  <section id="historia">
+    <div class="sh"><div><h2>Historia</h2><p>Más de un siglo de campeones nacionales y los libros que cuentan el ajedrez chileno.</p></div></div>
+    <div class="ttabs" id="tt-historia" role="tablist" aria-label="Historia"><button type="button" role="tab" data-k="campeones" aria-selected="true">Campeones de Chile</button><button type="button" role="tab" data-k="libros" aria-selected="false">Libros</button></div>
+  <div class="tpane" id="campeones" role="tabpanel">
     <div class="sh"><div><h2>Campeones de Chile</h2><p>Cada casilla es un Campeonato Nacional Absoluto desde 1920. Los colores marcan a los seis máximos ganadores.</p></div>
       <span class="src">Fuente: <a href="https://www.ajefech.cl/index.php/nuestroscampeones" target="_blank" rel="noopener">AJEFECH, Nuestros Campeones</a></span></div>
     <div class="legend" id="legend"></div>
@@ -656,10 +723,48 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
       <div><h3 class="sub">Campeonas nacionales</h3><div class="list" id="fem"></div>
         <h3 class="sub" style="margin-top:24px">Rápido y Blitz</h3><div class="list" id="rb"></div></div>
     </div>
-  </section>
-  <section id="libros">
+  </div>
+  <div class="tpane" id="libros" role="tabpanel">
     <div class="sh"><div><h2>Libros del ajedrez chileno</h2><p>Historia, memorias, entrenamiento y estrategia escritos por autores chilenos. Una biblioteca que vamos ampliando.</p></div></div>
     <div class="books" id="books"></div>
+  </div>
+  </section>
+  <section id="faq">
+    <div class="sh"><div><h2>Preguntas frecuentes</h2><p>Lo básico para empezar a jugar torneos en Chile: ID FIDE, canon, ELO e inscripciones.</p></div></div>
+    <div class="faq">
+      <details open><summary>¿Qué es el ID FIDE?</summary>
+        <div><p>Es tu número de jugador en la Federación Internacional de Ajedrez (FIDE). Te identifica en todos los torneos válidos para ELO, en Chile y en el extranjero, y es la base de tu perfil en <a href="https://ratings.fide.com" target="_blank" rel="noopener">ratings.fide.com</a>, donde aparecen tu ELO y tus torneos.</p>
+        <p>Se crea una sola vez en la vida y no vence. Sin ID FIDE no puedes jugar torneos válidos para ELO ni campeonatos oficiales de la Federación.</p></div></details>
+      <details><summary>¿Cómo saco mi ID FIDE?</summary>
+        <div><p>Lo tramita la Federación de Ajedrez de Chile (AJEFECH). Escribes al correo de la Federación con:</p>
+        <ul><li>Fotocopia de tu cédula de identidad.</li><li>Un correo electrónico personal. No puede ser el mismo de otra persona.</li><li>Tu número de teléfono.</li><li>Si eres menor de edad, una autorización de tu apoderado (poder simple).</li></ul>
+        <p>El trámite tiene un costo de <b>10 euros</b>, que se pagan por transferencia a la cuenta de la Federación. Revisa los datos actualizados en <a href="https://www.ajefech.cl/index.php/documentacion/826-fide-id" target="_blank" rel="noopener">Creación FIDE ID en ajefech.cl</a>.</p></div></details>
+      <details><summary>¿Qué es el canon?</summary>
+        <div><p>Es la cuota anual que pagan los jugadores federados a la Federación de Ajedrez de Chile. Funciona como una licencia: hay que pagarlo cada año y es obligatorio para jugar los campeonatos oficiales de la Federación, como los nacionales escolares, de menores, por clubes o los clasificatorios al Absoluto.</p>
+        <p>Para 2026 el canon AJEFECH es de <b>$12.000</b> por jugador y no está incluido en la inscripción de los torneos. Se paga en la sección <a href="https://www.federacionchilenadeajedrez.cl/reglamento/5" target="_blank" rel="noopener">Pago CANON</a> del sitio de la Federación.</p></div></details>
+      <details><summary>¿Necesito ID FIDE y canon para jugar cualquier torneo?</summary>
+        <div><p>Depende del torneo:</p>
+        <ul><li><b>Campeonatos oficiales de la Federación:</b> necesitas los dos, ID FIDE y canon del año vigente, y además pertenecer a un club federado.</li>
+        <li><b>Torneos válidos para ELO FIDE de los clubes:</b> necesitas ID FIDE para que tus partidas cuenten para el ELO.</li>
+        <li><b>Torneos recreativos o escolares no válidos para ELO:</b> normalmente no piden ninguno de los dos.</li></ul>
+        <p>Lo que manda son las bases de cada torneo. En el calendario de esta página, los torneos con la etiqueta FIDE son válidos para ELO.</p></div></details>
+      <details><summary>¿Cómo obtengo mi primer ELO FIDE?</summary>
+        <div><p>Con tu ID FIDE creado, juega torneos válidos para ELO. Según el reglamento de FIDE, tu primer ELO aparece cuando completas al menos 5 partidas contra rivales que ya tienen ELO, aunque sea en varios torneos. El ELO más bajo que publica FIDE es 1400.</p>
+        <p>Hay ELO separado para cada ritmo: clásico, rápido y blitz.</p></div></details>
+      <details><summary>¿Qué diferencia hay entre clásico, rápido y blitz?</summary>
+        <div><ul><li><b>Clásico:</b> partidas largas, en general de una hora o más por jugador, como 60+30 o 90+30.</li><li><b>Rápido:</b> más de 10 y menos de 60 minutos por jugador, por ejemplo 15+5 o 25+10.</li><li><b>Blitz:</b> 10 minutos o menos por jugador, por ejemplo 3+2.</li></ul>
+        <p>El segundo número es el incremento: los segundos que se suman al reloj después de cada jugada.</p></div></details>
+      <details><summary>¿Cómo me inscribo en un torneo?</summary>
+        <div><p>En el calendario de esta página toca el torneo que te interesa y luego "Ver bases e inscribirse en la Federación". Ahí están las bases, el valor y el formulario de inscripción del organizador. La inscripción y el pago siempre se hacen en el sitio oficial, no en esta página.</p></div></details>
+      <details><summary>¿Cada cuánto se actualiza el ranking?</summary>
+        <div><p>FIDE publica una lista nueva de ELO el primer día de cada mes. En la sección Ranking, junto a la fuente, verás de qué mes es la lista que estamos mostrando. Tu perfil oficial siempre está en ratings.fide.com.</p></div></details>
+      <details><summary>¿Cómo publico el torneo de mi club?</summary>
+        <div><p>Los clubes federados publican sus torneos en el calendario de la Federación de Ajedrez de Chile. Una vez publicado allí, aparece en el calendario de esta página.</p></div></details>
+      <details><summary>¿Cómo preparo una partida contra un rival?</summary>
+        <div><p>En <b>Entrenamiento → Base de datos</b> busca a tu rival por su nombre. Vas a ver su ficha FIDE, sus partidas transmitidas en torneos chilenos y su repertorio con blancas y con negras, jugada por jugada. También hay enlaces para buscar sus partidas en ChessBase, Chessgames y otras bases.</p></div></details>
+      <details><summary>¿De dónde salen los datos de esta página?</summary>
+        <div><p>Los torneos vienen de la Federación de Ajedrez de Chile. El ranking viene de la lista oficial de FIDE. Las noticias y los campeones vienen de AJEFECH. Las partidas, transmisiones y ejercicios vienen de Lichess. ajedrezchileno.cl es un sitio informativo independiente.</p></div></details>
+    </div>
   </section>
 </div>
 </main>
@@ -667,7 +772,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
 <footer><div class="wrap">
   <div><a class="logo" href="#inicio"><div class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>ajedrezchileno<em>.cl</em></span></a>
     <p style="margin:14px 0 0;max-width:42ch">Sitio informativo independiente sobre el ajedrez en Chile. Torneos, ranking y campeones en un solo lugar.</p></div>
-  <div><h4>Secciones</h4><ul><li><a href="#torneos">Calendario de torneos</a></li><li><a href="#noticias">Noticias</a></li><li><a href="#ranking">Ranking FIDE</a></li><li><a href="#base">Base de datos de partidas</a></li><li><a href="#jugar">Juega online</a></li><li><a href="#tactica">Táctica</a></li><li><a href="#libros">Libros del ajedrez chileno</a></li><li><a href="#campeones">Campeones de Chile</a></li></ul></div>
+  <div><h4>Secciones</h4><ul><li><a href="#calendario">Calendario de torneos</a></li><li><a href="#live">Transmisiones en vivo</a></li><li><a href="#noticias">Noticias</a></li><li><a href="#ranking">Ranking FIDE</a></li><li><a href="#tactica">Táctica</a></li><li><a href="#jugar">Juega online</a></li><li><a href="#base">Base de datos de partidas</a></li><li><a href="#campeones">Campeones de Chile</a></li><li><a href="#libros">Libros del ajedrez chileno</a></li><li><a href="#faq">Preguntas frecuentes</a></li></ul></div>
   <div><h4>Fuentes oficiales</h4><ul><li><a href="https://www.ajefech.cl" target="_blank" rel="noopener">AJEFECH</a></li><li><a href="https://www.federacionchilenadeajedrez.cl/torneos/" target="_blank" rel="noopener">Calendario Federación</a></li><li><a href="https://ratings.fide.com/rankings.phtml?country=CHI" target="_blank" rel="noopener">FIDE Ratings</a></li></ul></div>
   <div class="legal">Los datos de torneos, ranking y campeonatos pertenecen a la Federación de Ajedrez de Chile y a FIDE. Inscripciones y bases oficiales en el sitio de cada organizador.</div>
 </div></footer>
@@ -840,7 +945,7 @@ function drawMap(){
 }
 drawMap();
 function mapSelect(){document.querySelectorAll("#mapsvg g.reg").forEach(g=>g.classList.toggle("sel",g.dataset.r===reg))}
-function pickRegion(r){if(!r)return;reg=r;lim=15;renderT();document.getElementById("torneos").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})}
+function pickRegion(r){if(!r)return;reg=r;lim=15;renderT();if(typeof showTab==="function")showTab("calendario");document.getElementById("torneos").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})}
 $("#mapsvg").addEventListener("click",e=>{const g=e.target.closest("g.reg[tabindex]");if(g)pickRegion(g.dataset.r)});
 $("#mapsvg").addEventListener("keydown",e=>{if(e.key!=="Enter"&&e.key!==" ")return;const g=e.target.closest("g.reg[tabindex]");if(g){e.preventDefault();pickRegion(g.dataset.r)}});
 
@@ -1148,6 +1253,47 @@ const LIBROS=[
 $("#books").innerHTML=LIBROS.map(([t,a,an,y,ed,cat,c,d,u,ul])=>`<article class="book"><div class="cover ${c}" aria-hidden="true"><b>${esc(t)}</b><span>${esc(a)}</span><i></i></div>
   <div style="min-width:0"><span class="chip o">${esc(cat)}</span><h3>${esc(t)}</h3><div class="by">${esc(a)}${an?` <span style="color:var(--muted)">· ${esc(an)}</span>`:""}</div><div class="meta">${y} · ${esc(ed)}</div>
   <p>${esc(d)}</p><a href="${u}" target="_blank" rel="noopener">${esc(ul)} →</a></div></article>`).join("");
+
+// Subpestañas: Torneos, Entrenamiento e Historia
+const GROUPS={torneos:["calendario","live"],entrenamiento:["tactica","jugar","base"],historia:["campeones","libros"]};
+const P2G={};Object.entries(GROUPS).forEach(([g,ks])=>ks.forEach(k=>P2G[k]=g));
+let loadLive=null;
+function showTab(k,scroll){const g=P2G[k];if(!g)return;GROUPS[g].forEach(x=>{$("#"+x).hidden=x!==k});
+  document.querySelectorAll(`#tt-${g} button`).forEach(b=>b.setAttribute("aria-selected",b.dataset.k===k));
+  if(k==="live"&&loadLive)loadLive();
+  if(scroll)$("#"+g).scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})}
+document.querySelectorAll(".ttabs").forEach(t=>t.addEventListener("click",e=>{const b=e.target.closest("button");if(b)showTab(b.dataset.k)}));
+document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const k=a.getAttribute("href").slice(1);if(P2G[k]){e.preventDefault();showTab(k,true)}});
+Object.values(GROUPS).forEach(ks=>showTab(ks[0]));
+{const h=location.hash.slice(1);if(P2G[h])setTimeout(()=>showTab(h,true),50)}
+
+// Live: transmisiones chilenas en Lichess
+(async function(){
+  const list=$("#livelist"),fr=$("#liveframe"),known=new Set(GT.map(t=>t[0]));
+  const isCL=x=>{const t=x.tour||{},i=t.info||{};return known.has(t.id)||/chile|chilen/i.test(t.name+" "+(i.location||""))||i.timeZone==="America/Santiago"};
+  let items=[];
+  try{
+    const qs=["chile","chileno","chess boss","IRT"];
+    const res=await Promise.all(qs.map(q=>fetch("https://lichess.org/api/broadcast/search?q="+encodeURIComponent(q)).then(r=>r.ok?r.json():null).catch(()=>null)));
+    const seen=new Set();res.forEach(j=>((j&&j.currentPageResults)||[]).forEach(x=>{if(x.tour&&!seen.has(x.tour.id)&&isCL(x)){seen.add(x.tour.id);items.push(x)}}));
+  }catch(e){}
+  const now=Date.now();
+  const stat=x=>{const r=x.round||{};if(r.ongoing)return 0;if(r.startsAt&&r.startsAt>now)return 1;return 2};
+  const when=x=>{const r=x.round||{},d=(x.tour&&x.tour.dates)||[];return r.startsAt||d[d.length-1]||d[0]||(x.tour&&x.tour.createdAt)||0};
+  if(items.length){items.sort((a,b)=>stat(a)-stat(b)||(stat(a)===1?when(a)-when(b):when(b)-when(a)))}
+  else{items=GT.map(([id,name])=>({tour:{id,name,slug:"-",url:"https://lichess.org/broadcast/-/"+id},fallback:true}))}
+  const fd=ms=>{const d=new Date(ms);return `${d.getDate()} ${MES[d.getMonth()]} ${d.getFullYear()}`};
+  const label=x=>{if(x.fallback)return["","Transmisión"];const s=stat(x),r=x.round||{};return s===0?["on","En vivo · "+(r.name||"")]:s===1?["soon","Próximo · "+fd(r.startsAt)]:["","Finalizado"+(when(x)?" · "+fd(when(x)):"")]};
+  list.innerHTML=items.slice(0,30).map((x,i)=>{const[c,l]=label(x),t=x.tour,loc=(t.info&&t.info.location)||"";
+    return `<button class="lt" type="button" data-i="${i}" aria-pressed="false"><span class="st ${c}">${esc(l)}</span><b>${esc(t.name)}</b>${loc?`<small>${esc(loc)}</small>`:""}</button>`}).join("");
+  function pick(i){const x=items[i];if(!x)return;const t=x.tour,[,l]=label(x);
+    list.querySelectorAll(".lt").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.i===i));
+    $("#livetitle").textContent=t.name;$("#livestate").textContent=l;$("#livelink").href=(x.round&&x.round.url)||t.url;
+    fr.dataset.src=`https://lichess.org/embed/broadcast/${encodeURIComponent(t.slug||"-")}/${t.id}?bg=light&theme=blue`;if(!$("#live").hidden)fr.src=fr.dataset.src}
+  list.addEventListener("click",e=>{const b=e.target.closest(".lt");if(b)pick(+b.dataset.i)});
+  pick(0);
+  loadLive=()=>{if(fr.dataset.src&&fr.src!==fr.dataset.src)fr.src=fr.dataset.src};if(!$("#live").hidden)loadLive();
+})();
 </script>
 
 </body>
