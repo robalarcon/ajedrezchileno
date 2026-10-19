@@ -209,8 +209,9 @@ async function updateNews() {
   const nb = getBlock("const NEWS=[\n", "\n];");
   const old = evalJS("[" + nb.body + "]");
   const k = s => { const [dd, mm, yy] = s.split(" "); return +(yy + String(MES3.indexOf(mm) + 1).padStart(2, "0") + dd.padStart(2, "0")); };
-  const urls = new Set(old.map(n => n[3]));
-  const fresh = items.filter(n => !urls.has(n.url)).map(n => [n.date, n.title, n.sum, n.url]);
+  const pathOf = u => { try { return new URL(u).pathname.replace(/\/+$/, "").toLowerCase(); } catch { return String(u); } };
+  const urls = new Set(old.map(n => pathOf(n[3])));
+  const fresh = items.filter(n => !urls.has(pathOf(n.url))).map(n => [n.date, n.title, n.sum, "https://www.ajefech.cl" + new URL(n.url).pathname]);
   if (!fresh.length) return;
   const all = [...fresh, ...old].sort((a, b) => k(b[0]) - k(a[0])).slice(0, 5);
   if (setBlock("const NEWS=[\n", "\n];", all.map(n => JSON.stringify(n)).join(",\n"))) changes.push(`Noticias: ${fresh.length} nuevas`);
