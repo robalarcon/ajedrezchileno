@@ -1,5 +1,12 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Ajedrez Chileno</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#152a54">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: sports-portal shell — utility bar, nav, dark hero band with KPIs and "this week";
@@ -15,21 +22,8 @@
   --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
   --shadow:0 1px 2px rgba(13,26,51,.06),0 8px 24px rgba(13,26,51,.06);
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0a1122; --surface:#111a30; --surface-2:#18233d; --ink:#e8edf6; --muted:#9ba7bf; --line:#243150;
-  --navy:#0e1b3a; --navy-2:#182a52;
-  --red:#f0606b; --red-soft:#3b1a22; --blue:#8db0f2; --blue-soft:#172647;
-  --gold:#e0b14a; --silver:#b3bccb; --bronze:#d08a5f;
-  --c1:#f0606b; --c2:#8db0f2; --c3:#3fc2ae; --c4:#e0b14a; --c5:#b28ae6; --c6:#7c879c;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0a1122; --surface:#111a30; --surface-2:#18233d; --ink:#e8edf6; --muted:#9ba7bf; --line:#243150;
-  --navy:#0e1b3a; --navy-2:#182a52;
-  --red:#f0606b; --red-soft:#3b1a22; --blue:#8db0f2; --blue-soft:#172647;
-  --gold:#e0b14a; --silver:#b3bccb; --bronze:#d08a5f;
-  --c1:#f0606b; --c2:#8db0f2; --c3:#3fc2ae; --c4:#e0b14a; --c5:#b28ae6; --c6:#7c879c;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
@@ -437,7 +431,68 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
   .util .wrap span:last-child{display:none}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Celular: diseño compacto */
+@media (max-width:600px){
+  header.nav .wrap{gap:6px;padding-block:8px 4px}
+  .mark{width:26px;height:26px}
+  .logo span{font-size:21px}
+  .tabs a{font-size:13.5px;padding:7px 9px}
+  .util{font-size:11.5px}
+  section{padding-block:40px 4px;scroll-margin-top:100px}
+  .sh{margin-bottom:16px;padding-bottom:10px}
+  .sh h2{font-size:32px}
+  .sh p{font-size:14px}
+  .hero .wrap{padding-block:26px 30px;gap:26px}
+  .hero h1{font-size:38px}
+  #mapsvg{height:470px}
+  .week{padding:16px 16px 6px}
+  .week h2{flex-wrap:wrap;gap:4px}
+  .panel{padding:14px}
+  .regions{grid-template-columns:1fr 1fr;column-gap:8px}
+  .rg{font-size:12.5px;padding:3px 4px}
+  .t{padding:12px;gap:12px}
+  .t h3{font-size:15px}
+  .podium{gap:10px}
+  .pd{padding:14px 16px}
+  .pd.p1{order:-1;padding-block:16px}
+  .pd .top{align-items:center}
+  .pd .pos{font-size:40px}
+  .photo,.pd.p1 .photo{width:68px;height:68px}
+  .pd .nm{font-size:16px;margin-top:8px}
+  .pd .elo{font-size:30px;margin-top:6px}
+  th,td{padding:9px 10px}
+  td.name{min-width:150px}
+  td.e{font-size:19px}
+  .news{gap:12px}
+  .ni{padding:16px}
+  .ni.feat h3{font-size:27px}
+  .dbgrid{gap:14px}
+  .pcard h3{font-size:27px}
+  #base .tablebox table:not(.mt) th:nth-child(2),#base .tablebox table:not(.mt) td:nth-child(2),
+  #base .tablebox table:not(.mt) th:nth-child(7),#base .tablebox table:not(.mt) td:nth-child(7),
+  #base .tablebox table:not(.mt) th:nth-child(8),#base .tablebox table:not(.mt) td:nth-child(8){display:none}
+  #dbgames td{white-space:normal}
+  .gtools{margin-top:22px}
+  .gtools .right{width:100%}
+  .gtools .seg2{width:100%}.gtools .seg2 button{flex:1;padding:9px 4px}
+  .gtools .btn{width:100%;justify-content:center}
+  .rank-tools .seg2{width:100%}.rank-tools .seg2 button{flex:1;padding:9px 4px}
+  .play{min-height:0;padding:14px 16px;gap:4px}
+  .play h3{font-size:20px}
+  .play .ico{width:32px;height:32px;font-size:18px}
+  .clinks{grid-template-columns:1fr 1fr}
+  .frame{max-width:none}
+  .book{grid-template-columns:72px minmax(0,1fr);gap:12px;padding:14px}
+  .cover b{font-size:8.5px}.cover span{font-size:7.5px}
+  .yeargrid{grid-template-columns:repeat(auto-fill,minmax(26px,1fr));gap:3px}
+  .li{padding:9px 12px;grid-template-columns:44px minmax(0,1fr) auto}
+  h3.sub{font-size:20px}
+  footer{margin-top:48px}
+}
 </style>
+</head>
+<body>
 
 <div class="util"><div class="wrap">
   <span class="live">Datos actualizados al <b>19 de octubre de 2026</b></span>
@@ -569,7 +624,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
           </div></div>
       </div>
       <div class="frame"><span class="label"><span class="dotlive" aria-hidden="true"></span>En vivo en Lichess TV</span>
-        <iframe src="https://lichess.org/tv/frame?theme=blue&amp;bg=system" title="Lichess TV: la partida destacada en vivo" loading="lazy" allowtransparency="true"></iframe>
+        <iframe src="https://lichess.org/tv/frame?theme=blue&amp;bg=light" title="Lichess TV: la partida destacada en vivo" loading="lazy" allowtransparency="true"></iframe>
         <small>La partida de mayor nivel que se juega ahora mismo en Lichess.</small></div>
     </div>
   </section>
@@ -585,7 +640,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
         </div>
       </div>
       <div class="frame"><span class="label">Ejercicio del día</span>
-        <iframe src="https://lichess.org/training/frame?theme=blue&amp;bg=system" title="Ejercicio del día de Lichess" loading="lazy" allowtransparency="true"></iframe>
+        <iframe src="https://lichess.org/training/frame?theme=blue&amp;bg=light" title="Ejercicio del día de Lichess" loading="lazy" allowtransparency="true"></iframe>
         <small>Un ejercicio nuevo cada día. Haz clic en el tablero para resolverlo en Lichess.</small></div>
     </div>
   </section>
@@ -1094,3 +1149,6 @@ $("#books").innerHTML=LIBROS.map(([t,a,an,y,ed,cat,c,d,u,ul])=>`<article class="
   <div style="min-width:0"><span class="chip o">${esc(cat)}</span><h3>${esc(t)}</h3><div class="by">${esc(a)}${an?` <span style="color:var(--muted)">· ${esc(an)}</span>`:""}</div><div class="meta">${y} · ${esc(ed)}</div>
   <p>${esc(d)}</p><a href="${u}" target="_blank" rel="noopener">${esc(ul)} →</a></div></article>`).join("");
 </script>
+
+</body>
+</html>
