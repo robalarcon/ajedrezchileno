@@ -228,9 +228,26 @@ async function updateNews() {
 
 // ---------- 3. Ranking FIDE ----------
 async function updateFide() {
-  const r = await fetchRetry("https://ratings.fide.com/download/standard_rating_list.zip", { headers: UA });
-  if (!r.ok) throw new Error("FIDE respondió " + r.status);
-  const buf = Buffer.from(await r.arrayBuffer());
+  // La lista sale el día 1 de cada mes: si la página ya tiene la del mes actual, no hace falta bajarla.
+  const cur = getBlock("Lista FIDE vigente: <b>", "</b>").body.trim();
+  if (cur === `${MESES[CM - 1]} ${CY}`) return;
+  const URL_FIDE = "https://ratings.fide.com/download/standard_rating_list.zip";
+  let buf;
+  try {
+    const r = await fetchRetry(URL_FIDE, { headers: UA });
+    if (!r.ok) throw new Error("FIDE respondió " + r.status);
+    buf = Buffer.from(await r.arrayBuffer());
+  } catch (e) {
+    // segundo intento con curl (IPv4 y más tiempo de conexión)
+    const { execFileSync } = await import("node:child_process");
+    try {
+      execFileSync("curl", ["-sSfL", "-4", "--retry", "4", "--retry-delay", "15", "--connect-timeout", "40", "-o", "fide.zip", URL_FIDE], { stdio: "inherit" });
+      buf = fs.readFileSync("fide.zip"); fs.unlinkSync("fide.zip");
+    } catch (e2) {
+      if (CD < 8) { console.log("FIDE no respondió; se intentará de nuevo mañana."); return; }
+      throw new Error("No se pudo descargar la lista FIDE (" + e.message + ")");
+    }
+  }
   if (buf.readUInt32LE(0) !== 0x04034b50) throw new Error("El archivo de FIDE no es un zip válido");
   const method = buf.readUInt16LE(8), csize = buf.readUInt32LE(18), nl = buf.readUInt16LE(26), el = buf.readUInt16LE(28);
   const start = 30 + nl + el;
