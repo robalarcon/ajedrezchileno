@@ -63,7 +63,7 @@ header.nav .wrap{display:flex;align-items:center;gap:24px;padding-block:12px;fle
 .logo span{font-family:var(--display);font-stretch:75%;font-weight:800;font-size:24px;letter-spacing:.005em;line-height:1}
 .logo span em{font-style:normal;color:#ff7480}
 .tabs{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
-.tabs a{color:#c6d0e4;text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:6px}
+.tabs a{color:#c6d0e4;text-decoration:none;font-weight:600;font-size:14px;padding:8px 10px;border-radius:6px}
 .tabs a:hover{background:rgba(255,255,255,.08);color:#fff}
 
 /* Hero */
@@ -353,6 +353,58 @@ td.tn{white-space:normal;min-width:180px;font-size:13.5px}
 @media (max-width:900px){.dbgrid{grid-template-columns:1fr}}
 @media (max-width:600px){.exgrid{grid-template-columns:1fr}.board{max-width:360px;margin-inline:auto}td.tn{min-width:230px}.quick{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}.quick>*{white-space:nowrap;flex:none}}
 
+/* Juega online + Táctica */
+.pgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:24px;align-items:start}
+.plays{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.play{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s;min-height:132px}
+.play:hover{border-color:var(--ink);box-shadow:var(--shadow)}
+.play .ico{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue);font-size:21px;line-height:1}
+.play h3{margin:4px 0 0;font-family:var(--display);font-stretch:78%;font-size:22px;font-weight:800;text-transform:uppercase;line-height:1}
+.play p{margin:0;font-size:14px;color:var(--muted);flex:1}
+.play .go{font-size:13.5px;font-weight:700;color:var(--blue)}
+.play.main{background:var(--navy);border-color:var(--navy);color:var(--on-navy)}
+.play.main .ico{background:rgba(255,255,255,.1);color:#fff}
+.play.main h3{color:#fff}.play.main p{color:var(--on-navy-muted)}.play.main .go{color:#ff9aa2}
+.comm{margin-top:18px}
+.comm .label{display:block;margin-bottom:8px}
+.clinks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.frame{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px}
+.frame .label{display:flex;align-items:center;gap:8px}
+.frame iframe{width:100%;aspect-ratio:400/444;border:0;border-radius:8px;background:var(--surface-2);display:block}
+.frame small{font-size:12.5px;color:var(--muted)}
+.dotlive{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;box-shadow:0 0 0 3px var(--red-soft)}
+.racer{background:var(--navy);color:var(--on-navy);border-radius:14px;padding:28px;position:relative;overflow:hidden;margin-bottom:14px}
+.racer::after{content:"";position:absolute;right:-30px;top:-30px;width:220px;height:220px;background:conic-gradient(rgba(255,255,255,.05) 25%,transparent 0 50%,rgba(255,255,255,.05) 0 75%,transparent 0) 0 0/44px 44px;transform:rotate(12deg);-webkit-mask:radial-gradient(closest-side,#000 30%,transparent);mask:radial-gradient(closest-side,#000 30%,transparent);pointer-events:none}
+.racer .kicker{margin-bottom:6px}
+.racer h3{font-family:var(--display);font-stretch:70%;font-weight:900;font-size:clamp(34px,4vw,48px);line-height:.9;text-transform:uppercase;margin:6px 0 10px;color:#fff}
+.racer p{color:var(--on-navy-muted);max-width:52ch;margin:0 0 18px;font-size:15px}
+.racer ol{margin:0 0 20px;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:640px;position:relative;z-index:1}
+.racer li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:10px 12px;font-size:13.5px;color:#dbe3f2}
+.racer li b{display:block;font-family:var(--mono);font-size:11px;color:#ff9aa2;letter-spacing:.1em;margin-bottom:2px}
+.racer .btnrow{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.racer .btn{border-color:rgba(255,255,255,.4);color:#fff}
+.racer .btn:hover{background:#fff;color:var(--navy)}
+.racer .btn.pri{border-color:var(--red);color:#fff}
+.tmodes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tmodes .play{min-height:118px}
+/* Libros */
+.books{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.book{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;align-items:start}
+.cover{aspect-ratio:2/3;border-radius:3px 7px 7px 3px;padding:10px 8px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;position:relative;box-shadow:inset 6px 0 0 rgba(0,0,0,.18),0 6px 14px rgba(13,26,51,.18);overflow:hidden}
+.cover b{font-family:var(--display);font-stretch:68%;font-weight:900;text-transform:uppercase;font-size:10px;line-height:1;overflow-wrap:normal;word-break:normal;hyphens:manual;letter-spacing:-.01em}
+.cover span{font-size:9px;opacity:.85;line-height:1.15}
+.cover i{position:absolute;right:-14px;bottom:-14px;width:54px;height:54px;background:conic-gradient(rgba(255,255,255,.14) 25%,transparent 0 50%,rgba(255,255,255,.14) 0 75%,transparent 0) 0 0/18px 18px;border-radius:4px;transform:rotate(12deg)}
+.cover.c1{background:linear-gradient(160deg,#1f3768,#0d1a33)}.cover.c2{background:linear-gradient(160deg,#d22f3c,#8f1a24)}.cover.c3{background:linear-gradient(160deg,#2c5bb8,#173b80)}.cover.c4{background:linear-gradient(160deg,#3b4a63,#1c2638)}
+.book .chip{align-self:start;justify-self:start}
+.book h3{margin:8px 0 4px;font-size:16.5px;line-height:1.25;font-weight:700}
+.book .by{font-size:13.5px;color:var(--ink)}
+.book .meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+.book p{font-size:13.5px;color:var(--muted);margin:8px 0 8px}
+.book a{font-size:13.5px;font-weight:700;color:var(--blue);text-decoration:none}
+.book a:hover{text-decoration:underline}
+@media (max-width:900px){.pgrid{grid-template-columns:1fr}.frame{max-width:420px}.books{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.plays,.clinks,.tmodes{grid-template-columns:1fr}.racer{padding:22px}.racer ol{grid-template-columns:1fr}.books{grid-template-columns:1fr}.tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.tabs::-webkit-scrollbar{display:none}.tabs a{white-space:nowrap}}
+
 footer{margin-top:72px;background:var(--navy);color:var(--on-navy-muted);font-size:14px}
 footer .wrap{padding-block:40px 32px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
 footer h4{color:#fff;font-size:13px;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin:0 0 10px}
@@ -393,7 +445,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
 </div></div>
 <header class="nav"><div class="wrap">
   <a class="logo" href="#inicio" aria-label="ajedrezchileno.cl, inicio"><div class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>ajedrezchileno<em>.cl</em></span></a>
-  <nav class="tabs" aria-label="Secciones"><a href="#mapa">Mapa</a><a href="#torneos">Torneos</a><a href="#noticias">Noticias</a><a href="#ranking">Ranking FIDE</a><a href="#base">Base de datos</a><a href="#campeones">Campeones</a></nav>
+  <nav class="tabs" aria-label="Secciones"><a href="#torneos">Torneos</a><a href="#noticias">Noticias</a><a href="#ranking">Ranking</a><a href="#base">Base de datos</a><a href="#jugar">Juega online</a><a href="#tactica">Táctica</a><a href="#campeones">Campeones</a><a href="#libros">Libros</a></nav>
 </div><div class="flagbar" aria-hidden="true"></div></header>
 
 <main id="inicio">
@@ -497,6 +549,53 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
       <tbody id="dbgames"></tbody></table></div>
     <p class="dbcredit">Archivo propio con <span id="dbtot"></span> partidas de torneos chilenos transmitidos en Lichess entre 2021 y 2026 (dominio público, CC0). Para partidas más antiguas o del extranjero usa los enlaces a ChessBase, Chessgames y las demás bases.</p>
   </section>
+  <section id="jugar">
+    <div class="sh"><div><h2>Juega online</h2><p>Partidas gratis y sin publicidad en Lichess. Elige cómo quieres jugar y se abre Lichess en una pestaña nueva, con el tablero listo.</p></div>
+      <span class="src">Plataforma: <a href="https://lichess.org" target="_blank" rel="noopener">lichess.org</a></span></div>
+    <div class="pgrid">
+      <div style="min-width:0">
+        <div class="plays">
+          <a class="play main" href="https://lichess.org/#hook" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♞&#xFE0E;</span><h3>Partida rápida</h3><p>Busca un rival de tu nivel en segundos. Tú eliges el ritmo: blitz, rápido o clásico.</p><span class="go">Buscar rival →</span></a>
+          <a class="play" href="https://lichess.org/#friend" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♚&#xFE0E;</span><h3>Desafía a un amigo</h3><p>Crea una partida y comparte el enlace con quien quieras jugar.</p><span class="go">Crear desafío →</span></a>
+          <a class="play" href="https://lichess.org/#ai" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♜&#xFE0E;</span><h3>Contra la computadora</h3><p>Ocho niveles, desde principiante hasta Stockfish a toda fuerza.</p><span class="go">Jugar →</span></a>
+          <a class="play" href="https://lichess.org/tournament" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♛&#xFE0E;</span><h3>Torneos arena</h3><p>Torneos online que comienzan cada pocos minutos, a todos los ritmos.</p><span class="go">Ver torneos →</span></a>
+        </div>
+        <div class="comm"><span class="label">Comunidad chilena en Lichess</span>
+          <div class="clinks">
+            <a class="xl" href="https://lichess.org/team/ajefech-chile" target="_blank" rel="noopener">AJEFECH Chile<small>Equipo de la Federación</small></a>
+            <a class="xl" href="https://lichess.org/team/chess-chile" target="_blank" rel="noopener">Chess Chile<small>Equipo abierto</small></a>
+            <a class="xl" href="https://lichess.org/broadcast?q=chile" target="_blank" rel="noopener">Torneos chilenos en vivo<small>Transmisiones de Lichess</small></a>
+            <a class="xl" href="https://lichess.org/team/search?text=chile" target="_blank" rel="noopener">Más equipos de Chile<small>Clubes y colegios</small></a>
+          </div></div>
+      </div>
+      <div class="frame"><span class="label"><span class="dotlive" aria-hidden="true"></span>En vivo en Lichess TV</span>
+        <iframe src="https://lichess.org/tv/frame?theme=blue&amp;bg=system" title="Lichess TV: la partida destacada en vivo" loading="lazy" allowtransparency="true"></iframe>
+        <small>La partida de mayor nivel que se juega ahora mismo en Lichess.</small></div>
+    </div>
+  </section>
+  <section id="tactica">
+    <div class="sh"><div><h2>Táctica</h2><p>Entrena el cálculo con los ejercicios de Lichess. Compite en Puzzle Racer contra tus amigos, alumnos o compañeros de club.</p></div>
+      <span class="src">Ejercicios: <a href="https://lichess.org/training" target="_blank" rel="noopener">Lichess</a> (CC0)</span></div>
+    <div class="pgrid">
+      <div style="min-width:0">
+        <div class="racer">
+          <span class="kicker">Modo multijugador</span>
+          <h3>Puzzle Racer</h3>
+          <p>Carreras de táctica: resuelve la mayor cantidad de ejercicios que puedas en 90 segundos, al mismo tiempo que tus rivales. Ideal para clases, clubes y desafíos entre amigos.</p>
+          <ol><li><b>1 · CREA</b>Abre una carrera privada en Lichess.</li><li><b>2 · COMPARTE</b>Envía el enlace a tu grupo por WhatsApp o correo.</li><li><b>3 · COMPITE</b>Cada acierto suma; los errores cortan tu racha.</li></ol>
+          <div class="btnrow"><a class="btn pri" href="https://lichess.org/racer" target="_blank" rel="noopener">Crear una carrera</a><a class="btn" href="https://lichess.org/racer" target="_blank" rel="noopener">Unirse a una carrera pública</a></div>
+        </div>
+        <div class="tmodes">
+          <a class="play" href="https://lichess.org/storm" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">⚡&#xFE0E;</span><h3>Puzzle Storm</h3><p>Tres minutos contra el reloj. Los ejercicios se van poniendo más difíciles.</p></a>
+          <a class="play" href="https://lichess.org/streak" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♝&#xFE0E;</span><h3>Puzzle Streak</h3><p>Sin reloj, pero un solo error termina la racha.</p></a>
+          <a class="play" href="https://lichess.org/training/themes" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">♟&#xFE0E;</span><h3>Por tema</h3><p>Mates en dos, clavadas, horquillas, finales y más.</p></a>
+        </div>
+      </div>
+      <div class="frame"><span class="label">Ejercicio del día</span>
+        <iframe src="https://lichess.org/training/frame?theme=blue&amp;bg=system" title="Ejercicio del día de Lichess" loading="lazy" allowtransparency="true"></iframe>
+        <small>Un ejercicio nuevo cada día. Haz clic en el tablero para resolverlo en Lichess.</small></div>
+    </div>
+  </section>
   <section id="campeones">
     <div class="sh"><div><h2>Campeones de Chile</h2><p>Cada casilla es un Campeonato Nacional Absoluto desde 1920. Los colores marcan a los seis máximos ganadores.</p></div>
       <span class="src">Fuente: <a href="https://www.ajefech.cl/index.php/nuestroscampeones" target="_blank" rel="noopener">AJEFECH, Nuestros Campeones</a></span></div>
@@ -510,13 +609,17 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
         <h3 class="sub" style="margin-top:24px">Rápido y Blitz</h3><div class="list" id="rb"></div></div>
     </div>
   </section>
+  <section id="libros">
+    <div class="sh"><div><h2>Libros del ajedrez chileno</h2><p>Historia, memorias, entrenamiento y estrategia escritos por autores chilenos. Una biblioteca que vamos ampliando.</p></div></div>
+    <div class="books" id="books"></div>
+  </section>
 </div>
 </main>
 
 <footer><div class="wrap">
   <div><a class="logo" href="#inicio"><div class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>ajedrezchileno<em>.cl</em></span></a>
     <p style="margin:14px 0 0;max-width:42ch">Sitio informativo independiente sobre el ajedrez en Chile. Torneos, ranking y campeones en un solo lugar.</p></div>
-  <div><h4>Secciones</h4><ul><li><a href="#torneos">Calendario de torneos</a></li><li><a href="#noticias">Noticias</a></li><li><a href="#ranking">Ranking FIDE</a></li><li><a href="#base">Base de datos de partidas</a></li><li><a href="#campeones">Campeones de Chile</a></li></ul></div>
+  <div><h4>Secciones</h4><ul><li><a href="#torneos">Calendario de torneos</a></li><li><a href="#noticias">Noticias</a></li><li><a href="#ranking">Ranking FIDE</a></li><li><a href="#base">Base de datos de partidas</a></li><li><a href="#jugar">Juega online</a></li><li><a href="#tactica">Táctica</a></li><li><a href="#libros">Libros del ajedrez chileno</a></li><li><a href="#campeones">Campeones de Chile</a></li></ul></div>
   <div><h4>Fuentes oficiales</h4><ul><li><a href="https://www.ajefech.cl" target="_blank" rel="noopener">AJEFECH</a></li><li><a href="https://www.federacionchilenadeajedrez.cl/torneos/" target="_blank" rel="noopener">Calendario Federación</a></li><li><a href="https://ratings.fide.com/rankings.phtml?country=CHI" target="_blank" rel="noopener">FIDE Ratings</a></li></ul></div>
   <div class="legal">Los datos de torneos, ranking y campeonatos pertenecen a la Federación de Ajedrez de Chile y a FIDE. Inscripciones y bases oficiales en el sitio de cada organizador.</div>
 </div></footer>
@@ -985,4 +1088,16 @@ $("#dbtot").textContent=GG.length;
 const first=ACT.map(x=>ALL.indexOf(x)).find(a=>nG(a)>=10);
 select(first>=0?first:ranked[0]);
 })();
+
+// Libros del ajedrez chileno: [título, autor, nota del autor, año, editorial, categoría, color portada, descripción, enlace, texto enlace]
+const LIBROS=[
+["El ajedrez en Chile","Ángelo Guiñez Jarpa","",2009,"Con apoyo de la Fundación Chilena de Ajedrez","Historia","c1","Más de un siglo de ajedrez nacional en 400 páginas: el Círculo de Ajedrez de Santiago, el primer Campeonato de Chile (1920), la visita de Alekhine (1927) y la era de Iván Morovic, con entrevistas a Rodrigo Flores, René Letelier y Morovic.","https://es.chessbase.com/post/lanzamiento-de-un-libro-de-investigacin-histrica","Reseña en ChessBase"],
+["Mis años de ajedrez","Rodrigo Flores Álvarez","11 veces campeón de Chile",2009,"Santiago","Memorias","c2","Autobiografía póstuma del gran niño prodigio del ajedrez chileno, que representó al país en tres olimpiadas y fue además un destacado ingeniero.","https://chesshistory.com/winter/extra/flores.html","Artículo de Edward Winter"],
+["Ajedrez: manual de entrenamiento","Eduardo Arancibia Guzmán","MF, campeón de Chile 1994 y 2006",2016,"Federación de Ajedrez de Chile","Entrenamiento","c3","Casi 300 páginas escritas para la Academia de Alto Rendimiento de la Federación: planificación posicional, estudio de aperturas, partidas clásicas, combinaciones y finales.","https://ajefech.cl/index.php/noticias/457-manualentrenamiento2015","Ver en ajefech.cl"],
+["Chess Structures: A Grandmaster Guide","Mauricio Flores Ríos","Gran Maestro",2015,"Quality Chess","Estrategia","c4","Cómo entender y planificar a partir de la estructura de peones, con partidas modelo para cada estructura. Hay edición en español: Estructuras en ajedrez.","https://www.newinchess.com/chess-structures-a-grandmaster-guide-flores","Ver el libro"],
+["Chess Imbalances: A GM Guide","Mauricio Flores Ríos","Gran Maestro",2025,"Quality Chess","Estrategia","c1","El segundo libro de Flores Ríos: cómo reconocer y aprovechar los desequilibrios de una posición.","https://newinchess.com/chess-imbalances","Ver el libro"]
+];
+$("#books").innerHTML=LIBROS.map(([t,a,an,y,ed,cat,c,d,u,ul])=>`<article class="book"><div class="cover ${c}" aria-hidden="true"><b>${esc(t)}</b><span>${esc(a)}</span><i></i></div>
+  <div style="min-width:0"><span class="chip o">${esc(cat)}</span><h3>${esc(t)}</h3><div class="by">${esc(a)}${an?` <span style="color:var(--muted)">· ${esc(an)}</span>`:""}</div><div class="meta">${y} · ${esc(ed)}</div>
+  <p>${esc(d)}</p><a href="${u}" target="_blank" rel="noopener">${esc(ul)} →</a></div></article>`).join("");
 </script>
