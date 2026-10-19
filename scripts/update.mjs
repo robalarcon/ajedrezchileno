@@ -16,6 +16,15 @@ const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto"
 const MES3 = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
 const noAcc = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
 const evalJS = txt => new Function("return (" + txt + ")")();
+async function fetchRetry(url, opt = {}, tries = 4) {
+  for (let k = 1; ; k++) {
+    try {
+      const r = await fetch(url, { ...opt, signal: AbortSignal.timeout(90000) });
+      if (r.ok || k >= tries || r.status < 500) return r;
+    } catch (e) { if (k >= tries) throw e; }
+    await new Promise(res => setTimeout(res, 10000 * k));
+  }
+}
 
 // Fecha de hoy en Chile
 const now = new Date();
@@ -126,7 +135,7 @@ function niceCity(raw, REG) {
 // ---------- 1. Torneos ----------
 async function updateTournaments() {
   const q = "{tournaments{id title city startDateFormated endDateFormated type rounds timeControl category eloInt inscriptionsCount address visible archived club{name}}}";
-  const r = await fetch("https://www.federacionchilenadeajedrez.cl/graphql", { method: "POST", headers: { ...UA, "content-type": "application/json" }, body: JSON.stringify({ query: q }) });
+  const r = await fetchRetry("https://www.federacionchilenadeajedrez.cl/graphql", { method: "POST", headers: { ...UA, "content-type": "application/json" }, body: JSON.stringify({ query: q }) });
   if (!r.ok) throw new Error("Federación respondió " + r.status);
   const j = await r.json();
   const list = (j.data && j.data.tournaments) || [];
@@ -189,7 +198,7 @@ function sentenceCase(t) {
     .replace(/\b(chile|santiago|ajefech|fide|ind)\b/gi, w => ({ chile: "Chile", santiago: "Santiago", ajefech: "AJEFECH", fide: "FIDE", ind: "IND" })[w.toLowerCase()]);
 }
 async function updateNews() {
-  const r = await fetch("https://www.ajefech.cl/", { headers: UA });
+  const r = await fetchRetry("https://www.ajefech.cl/", { headers: UA });
   if (!r.ok) throw new Error("ajefech.cl respondió " + r.status);
   const page = await r.text();
   const chunks = page.split(/itemprop="blogPost"/).slice(1);
@@ -219,7 +228,7 @@ async function updateNews() {
 
 // ---------- 3. Ranking FIDE ----------
 async function updateFide() {
-  const r = await fetch("https://ratings.fide.com/download/standard_rating_list.zip", { headers: UA });
+  const r = await fetchRetry("https://ratings.fide.com/download/standard_rating_list.zip", { headers: UA });
   if (!r.ok) throw new Error("FIDE respondió " + r.status);
   const buf = Buffer.from(await r.arrayBuffer());
   if (buf.readUInt32LE(0) !== 0x04034b50) throw new Error("El archivo de FIDE no es un zip válido");
