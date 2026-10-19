@@ -627,6 +627,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
       <thead><tr><th>#</th><th>Jugador</th><th>Nac.</th><th class="m">Distancia al n.º 1</th><th class="e">ELO</th></tr></thead>
       <tbody id="ptable"></tbody>
     </table></div>
+    <button class="more" id="pmore" type="button" hidden>Mostrar más</button>
   </section>
   <section id="entrenamiento">
     <div class="sh"><div><h2>Entrenamiento</h2><p>Ejercicios tácticos, partidas online y la base de datos para preparar a tus rivales chilenos.</p></div></div>
@@ -1025,7 +1026,7 @@ const initials=(ap,no)=>((no[0]||"")+(ap[0]||"")).toUpperCase();
 $("#podium").innerHTML=[1,0,2].map(i=>{const[nm,e,y]=P[i],[ap,no]=split(nm);
   const ph=PHOTOS[i]?`<img src="${PHOTOS[i]}" alt="${esc(no+" "+ap)}">`:`<span aria-hidden="true">${initials(ap,no)}</span>`;
   return `<div class="pd p${i+1}"><div class="top"><div class="pos">${i+1}</div><div class="photo"><div class="in">${ph}</div><span class="medal">${i+1}°</span></div></div><div class="nm">${esc(ap)}<small>${esc(no)}${y?" · "+y:""}</small></div><div class="elo">${e}<small>ELO FIDE</small></div>${CREDITS[i]?`<div class="credit">${CREDITS[i]}</div>`:""}</div>`}).join("");
-let pf="";
+let pf="",pall=false;
 const fmt=n=>n.toLocaleString("es-CL");
 function passF(x){return (pf!=="j"||x.y>=2006)&&(pf!=="s"||(x.y&&x.y<=1976))&&(pf!=="w"||x.w)}
 function renderP(){
@@ -1035,10 +1036,10 @@ function renderP(){
     const all=ALL.filter(x=>passF(x)&&norm(x.n).includes(q));
     rows=all.slice(0,60);
     const ina=all.filter(x=>!x.act).length;
-    note=all.length?`${fmt(all.length)} ${all.length===1?"resultado":"resultados"} entre ${fmt(ALL.length)} jugadores chilenos con ELO FIDE${ina?` (${ina} ${ina===1?"inactivo":"inactivos"})`:""}${all.length>60?". Se muestran los 60 de mayor ELO.":"."}`:"";
+    $("#pmore").hidden=true;note=all.length?`${fmt(all.length)} ${all.length===1?"resultado":"resultados"} entre ${fmt(ALL.length)} jugadores chilenos con ELO FIDE${ina?` (${ina} ${ina===1?"inactivo":"inactivos"})`:""}${all.length>60?". Se muestran los 60 de mayor ELO.":"."}`:"";
   }else{
-    rows=ACT.filter(passF).slice(0,50);
-    note=`Mostrando ${rows.length} jugadores activos${pf==="w"?" (damas)":pf==="j"?" sub 20":pf==="s"?" senior":""}. El número indica su puesto entre los ${fmt(ACT.length)} activos de Chile.`;
+    const top=ACT.filter(passF).slice(0,50);rows=top.slice(0,pall?50:20);$("#pmore").hidden=pall||top.length<=20;$("#pmore").textContent=`Mostrar más (ver los ${top.length})`;
+    note=`Mostrando ${rows.length} de los 50 mejores jugadores activos${pf==="w"?" (damas)":pf==="j"?" sub 20":pf==="s"?" senior":""}. El número indica su puesto entre los ${fmt(ACT.length)} activos de Chile.`;
   }
   $("#pnote").textContent=note;
   $("#ptable").innerHTML=rows.map(x=>{const[ap,no]=split(x.n);
@@ -1048,7 +1049,8 @@ function renderP(){
     ||`<tr><td colspan="5" style="padding:22px 16px;color:var(--muted);white-space:normal">No hay jugadores chilenos con ELO FIDE que coincidan con "${esc($("#qp").value.trim())}". Prueba solo con el apellido.</td></tr>`;
 }
 $("#qp").addEventListener("input",renderP);
-$("#segp").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;pf=b.dataset.k;$("#segp").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderP()});
+$("#pmore").addEventListener("click",()=>{pall=true;renderP()});
+$("#segp").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;pf=b.dataset.k;pall=false;$("#segp").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderP()});
 renderP();
 
 // Champions grid
