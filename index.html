@@ -1272,7 +1272,7 @@ Object.values(GROUPS).forEach(ks=>showTab(ks[0]));
 // Live: transmisiones chilenas en Lichess
 (async function(){
   const list=$("#livelist"),fr=$("#liveframe"),known=new Set(GT.map(t=>t[0]));
-  const isCL=x=>{const t=x.tour||{},i=t.info||{};return known.has(t.id)||/chile|chilen/i.test(t.name+" "+(i.location||""))||i.timeZone==="America/Santiago"};
+  const isCL=x=>{const t=x.tour||{},i=t.info||{};if(/colombia|argentin|per[uú]\b|bolivia|espa[ñn]a|m[eé]xico|venezuela|ecuador|uruguay|paraguay|brasil/i.test(i.location||""))return false;return known.has(t.id)||/chile|chilen/i.test(t.name+" "+(i.location||""))||i.timeZone==="America/Santiago"};
   let items=[];
   try{
     const qs=["chile","chileno","chess boss","IRT"];
