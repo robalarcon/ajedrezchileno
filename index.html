@@ -477,6 +477,31 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
 .tabs a.navlive::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff4d5a;margin-right:6px;vertical-align:.1em;animation:pulse 1.6s ease-in-out infinite}
 .tpane#live .sh h2 .livebadge{display:none}
 
+/* Libros de Job Sepúlveda */
+.authorcard{display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;align-items:start;background:var(--navy);color:var(--on-navy);border-radius:14px;padding:22px 24px;margin-bottom:20px}
+.authorcard .aimg{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:34px;background:rgba(255,255,255,.08);color:#fff}
+.authorcard h3{font-family:var(--display);font-stretch:72%;font-weight:900;font-size:30px;line-height:1;text-transform:uppercase;margin:6px 0 8px;color:#fff}
+.authorcard p{margin:0 0 8px;color:var(--on-navy-muted);font-size:14.5px;max-width:75ch}
+.authorcard .label{color:#ff9aa2}
+.authorcard .free{color:#dbe3f2;font-weight:600;margin:0}
+.jbooks{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+.jb{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.jb .jc{aspect-ratio:2/3;background:var(--surface-2);display:block;overflow:hidden;border-bottom:1px solid var(--line)}
+.jb .jc img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
+.jb .jc.mock img{object-fit:contain;background:#d9d9d6}
+.jb a.jc:hover img{transform:scale(1.03)}
+.jb .jt{padding:14px 14px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.jb h4{margin:0;font-size:16px;line-height:1.2}
+.jb .sub2{font-size:13px;color:var(--ink);font-weight:600}
+.jb .meta{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.jb p{margin:6px 0 10px;font-size:13.5px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.jb .acts{display:flex;gap:6px;margin-top:auto;flex-wrap:wrap}
+.jb .acts a{flex:1;text-align:center;font-size:13px;font-weight:700;padding:8px 6px;border-radius:7px;text-decoration:none;border:1px solid var(--ink);color:var(--ink);white-space:nowrap}
+.jb .acts a.pri{background:var(--red);border-color:var(--red);color:#fff}
+.jb .acts a:hover{filter:brightness(1.05)}
+.jb .soon{margin-top:auto;font-size:12.5px;color:var(--muted);background:var(--surface-2);border-radius:7px;padding:8px;text-align:center}
+@media (max-width:600px){.jbooks{grid-template-columns:1fr 1fr;gap:10px}.jb .jt{padding:10px}.jb h4{font-size:14.5px}.jb p{-webkit-line-clamp:4;font-size:12.5px}.jb .acts{flex-direction:column}.authorcard{grid-template-columns:1fr;padding:18px}.authorcard .aimg{display:none}}
+
 /* Celular: diseño compacto */
 @media (max-width:600px){
   header.nav .wrap{gap:6px;padding-block:8px 4px}
@@ -727,6 +752,11 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding
   </div>
   <div class="tpane" id="libros" role="tabpanel">
     <div class="sh"><div><h2>Libros del ajedrez chileno</h2><p>Historia, memorias, entrenamiento y estrategia escritos por autores chilenos. Una biblioteca que vamos ampliando.</p></div></div>
+    <div class="authorcard"><div class="aimg" aria-hidden="true">♚&#xFE0E;</div><div><span class="label">Autor destacado</span><h3>MF Job Sepúlveda</h3>
+      <p>Maestro FIDE con más de treinta años ligado al ajedrez como jugador, profesor, espectador y periodista deportivo. Es el autor de la saga <i>Muerte al Rey</i> y de los DVD <i>Introducción a los finales de torre</i> e <i>Introducción a los finales de peones</i>.</p>
+      <p class="free">Sus libros se pueden leer y descargar gratis: el autor autoriza el uso total o parcial de la obra, siempre que se mencione su nombre.</p></div></div>
+    <div class="jbooks" id="jbooks"></div>
+    <h3 class="sub" style="margin-top:36px">Más libros del ajedrez chileno</h3>
     <div class="books" id="books"></div>
   </div>
   </section>
@@ -1304,6 +1334,14 @@ Object.values(GROUPS).forEach(ks=>showTab(ks[0]));
   pick(0);
   loadLive=()=>{if(fr.dataset.src&&fr.src!==fr.dataset.src)fr.src=fr.dataset.src};if(!$("#live").hidden)loadLive();
 })();
+
+// Libros del MF Job Sepúlveda: [clave, título, subtítulo, año, editorial, ISBN, descripción, PDF, MB]
+const JCOV={"mr1":"libros/portadas/mr1.webp","mr2":"libros/portadas/mr2.webp","mr3":"libros/portadas/mr3.webp","mr4":"libros/portadas/mr4.webp","mr5":"libros/portadas/mr5.webp","ferni":"libros/portadas/ferni.webp","fischer":"libros/portadas/fischer.webp"};
+const JOB=[["mr1", "Muerte al Rey I", "Artículos ajedrecísticos", 2018, "Editorial Proletario", "978-956-393-606-3", "El primer tomo de la saga: el Dragón de Komodo, un organigrama de aperturas, el peón pasado como señuelo, cómo jugar «como ruso», ejercicios de estrategia y el sacrificio de dama en el siglo XXI.", "libros/muerte-al-rey-1.pdf", 8.5], ["mr2", "Muerte al Rey II", "Artículos ajedrecísticos", 2018, "Editorial Proletario", "978-956-398-379-1", "El gambito 1.d4 e5!?, consejos de los viejos grandes maestros, los experimentos de Zvjaginsev en la Siciliana, el final de torres con dos peones contra uno y los sacrificios de calidad de Magnus Carlsen.", "libros/muerte-al-rey-2.pdf", 7.5], ["mr3", "Muerte al Rey III", "Táctica en la Olimpiada de Batumi 2018", 2019, "Editorial Proletario", "978-956-401-398-5", "Ejercicios de táctica tomados de partidas de la Olimpiada de Batumi 2018, con sus soluciones comentadas.", "libros/muerte-al-rey-3.pdf", 3.1], ["mr4", "Muerte al Rey IV", "El ajedrez chileno v/s resto del mundo (parte 1)", 2020, "Editorial Proletario", "978-956-402-606-0", "Partidas de ajedrecistas chilenos frente a rivales de todo el mundo: Jáuregui contra Fischer, Letelier contra Najdorf, Henríquez contra Gelfand, Morovic, Flores, Vásquez, Salinas y más. Un homenaje al MF Pedro Donoso.", "libros/muerte-al-rey-4.pdf", 13.2], ["mr5", "Muerte al Rey V", "Artículos ajedrecísticos", 2024, "Editorial Proletario", "978-956-6175-14-8", "El mago de Riga, Vladimir Savon en Chile, finales prácticos, jaques mates, lecciones magistrales del GM Cristóbal Henríquez y la Defensa Escandinava con 3…De5+!?", "libros/muerte-al-rey-5.pdf", 7.9], ["ferni", "Ferni y el ajedrez", "Cuento infantil, ilustrado por Ana Gutiérrez", 2026, "Editorial Oso Bototo", "978-956-9945-17-5", "Un cuento ilustrado para que los más pequeños se acerquen al ajedrez, dedicado a su sobrina Fernanda.", "libros/ferni-y-el-ajedrez.pdf", 2.0], ["fischer", "Fischer contra la escuela soviética", "y otras crónicas de ajedrez", null, "", "", "Crónicas sobre Bobby Fischer y su duelo con la escuela soviética de ajedrez.", null, null]];
+$("#jbooks").innerHTML=JOB.map(([k,t,sb,y,ed,isbn,d,pdf,mb])=>{const img=`<img src="${JCOV[k]}" alt="Portada de ${esc(t)}" loading="lazy">`;
+  return `<article class="jb">${pdf?`<a class="jc" href="${pdf}" target="_blank" rel="noopener" aria-label="Leer ${esc(t)}">${img}</a>`:`<div class="jc${k==="fischer"?" mock":""}">${img}</div>`}
+  <div class="jt"><h4>${esc(t)}</h4><div class="sub2">${esc(sb)}</div><div class="meta">${[y,ed].filter(Boolean).join(" · ")}${isbn?`<br>ISBN ${isbn}`:""}</div><p>${esc(d)}</p>
+  ${pdf?`<div class="acts"><a class="pri" href="${pdf}" target="_blank" rel="noopener">Leer</a><a href="${pdf}" download>Descargar PDF · ${String(mb).replace(".",",")} MB</a></div>`:`<div class="soon">PDF próximamente</div>`}</div></article>`}).join("");
 </script>
 
 </body>
